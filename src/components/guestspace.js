@@ -33,7 +33,7 @@ setGlobalResetTimer = () =>{
   let tempglobalResetTimer = window.setTimeout( ()=>  {
     console.log('timer expired: reseting page!')
     this.setState({step: 0})
-  }, 40000 )
+  }, 30000 )
 
   this.setState({ globalResetTimer: tempglobalResetTimer})
 

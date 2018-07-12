@@ -31,8 +31,8 @@ setGlobalResetTimer = () =>{
 
   let tempglobalResetTimer = window.setTimeout( ()=>  {
     console.log('timer expired: reseting page!')
-    this.setState({step: 0})
-  }, 40000 )
+    this.setState({step: 0,  a: 0, b:0, c:0, d:0})
+  }, 30000 )
 
   this.setState({ globalResetTimer: tempglobalResetTimer})
 
@@ -81,6 +81,7 @@ render(){
       let letterWinner
       let {a, b, c, d} = this.state
 
+
           if (a > b && a > c && a > d) {
             letterWinner = 'a'
           } else if (b > a && b > c && b > d) {
@@ -92,6 +93,8 @@ render(){
           } else {
             letterWinner = 'd'
           }
+
+      console.log(letterWinner)
 
       let finishText =  letterWinner + '_text.png'
       let finishImage = letterWinner + '_image.png'
@@ -110,7 +113,7 @@ render(){
           </div>
         </div>
       );
-    } else if (this.state.step === 8 ){
+    }  else if (this.state.step === 8 ){
 
 
       let letterWinner
@@ -132,13 +135,31 @@ render(){
       let finishOptions = letterWinner + '_options.png'
 
       return(
-        <div className='finishScreen' onClick={ ()=> this.setState({step: 0})} >
+        <div className='finishScreen' onClick={ ()=> this.setState({step: 9})} >
 
           <div className='finishText' >
             <img src={'/img/03_Results/' + finishText} />
           </div>
 
           <div className='questionBox' style={{background: 'url(/img/03_Results/' + finishOptions + ')', backgroundRepeat: 'no-repeat'}} />
+
+          <div style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} >
+            <img  src={'/img/03_Results/NEXT_Button.png'} />
+          </div>
+
+        </div>
+      );
+    } else if (this.state.step === 9 ){
+
+
+      return(
+        <div className='finishScreen' onClick={ ()=> this.setState({step: 0, a: 0, b: 0, c:0, d:0})} >
+
+          <div className='finishText' >
+            <img src='/img/04_FinalFrame/04-Ending-Frame_Text.png' />
+          </div>
+
+          <div className='questionBox' style={{background: 'url(/img/04_FinalFrame/04-Ending-Frame_Image.png)', backgroundRepeat: 'no-repeat'}} />
 
           <div style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} >
             <img  src={'/img/03_Results/START-OVER_Button.png'} />
