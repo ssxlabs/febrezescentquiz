@@ -29,3 +29,102 @@
   font-size: 2em;
   text-align: center;
 }
+
+.startScreen{
+  height: 1920px;
+  width: 1080px;
+  background: url('/img/01_Start/startbackground.jpg');
+}
+
+.roomStartScreen{
+  position: relative;
+  height: 1920px;
+  width: 1080px;
+}
+
+.roomQuestionScreen{
+  position: relative;
+  height: 1920px;
+  width: 1080px;
+}
+
+.roomQuestionBox{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 675px;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.finishScreen{
+  position: relative;
+  height: 1920px;
+  width: 1080px;
+  background: url('/img/03_Results/Results_BACKGROUND.png');
+}
+
+.finishText{
+  position: absolute;
+  width: 100%;
+  top: 200px;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center
+}
+
+.questionScreen{
+  position: relative;
+  height: 1920px;
+  width: 1080px;
+  background: url('/img/02_Questions/Questions_BACKGROUND.png');
+}
+
+.questionText{
+  position: absolute;
+  width: 100%;
+  top: 200px;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center
+}
+
+.questionBox{
+  position: absolute;
+  width: 736px;
+  height:1165px;
+  bottom: 281px;
+  left: 172px;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+
+
+.gps_ring {
+    display: flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    -webkit-animation: pulsate 2.5s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(2.2, 2.2); opacity: 0.0;}
+}
