@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
 
 export default class Quiz extends Component {
 
@@ -10,6 +10,7 @@ export default class Quiz extends Component {
 
 componentDidMount(){
    window.addEventListener('click', this.setGlobalResetTimer);
+
 }
 
 answerSelected = ( answer) => {
@@ -47,32 +48,38 @@ render(){
     let questionImage = 'Question-' + this.state.step.toString() + '_Image.png'
 
     let page = (
-      <div className='questionScreen'>
+      <div className='fullBackground' key={questionText}>
+        <div className='slideDownBlocker' />
+
+        <div className='questionLogo' >
+          <img src={'/img/02_Questions/FebrezeQuestionLogo.png'} />
+        </div>
 
         <div className='questionText' >
           <img src={'/img/02_Questions/' + questionText} />
         </div>
 
-        <div className='questionBox' style={{background: 'url(/img/02_Questions/' + questionImage + ')', backgroundRepeat: 'no-repeat'}} >
-          <div style={{flex: '1 1 50%'}} onClick={ ()=> this.answerSelected( 'a') } >
-          </div>
-
-          <div style={{flex: '1 1 50%'}} onClick={ ()=>this.answerSelected( 'b') } >
-
-          </div>
-          <div style={{flex: '1 1 50%'}} onClick={ ()=>this.answerSelected( 'c') } >
-          </div>
-
-          <div style={{flex: '1 1 50%'}} onClick={ ()=> this.answerSelected( 'd') } >
-
-          </div>
+        <div className='windowBox slideDown trapp-btn' style={{background: 'url(/img/02_Questions/' + questionImage + ')', backgroundRepeat: 'no-repeat'}} >
+          <div style={{flex: '1 1 50%'}} onClick={ ()=> this.answerSelected( 'a') } />
+          <div style={{flex: '1 1 50%'}} onClick={ ()=> this.answerSelected( 'b') } />
+          <div style={{flex: '1 1 50%'}} onClick={ ()=> this.answerSelected( 'c') } />
+          <div style={{flex: '1 1 50%'}} onClick={ ()=> this.answerSelected( 'd') } />
         </div>
       </div>
     )
 
     if (this.state.step === 0 ){
       return(
-      <div className='startScreen' onClick={ ()=> this.setState({step:1})} />
+      <div className='fullBackground' >
+      <div className='slideDownBlocker' />
+
+      <div className='startLogo' >
+        <img src={'/img/01_Start/StartFebrezeLogo.png'} />
+      </div>
+
+        <div className='windowBox trapp-btn' style={{background: 'url(/img/01_Start/StartWindow.png)', backgroundRepeat: 'no-repeat'}}  onClick={ ()=> this.setState({step:1})} />
+
+      </div>
       );
 
     } else if (this.state.step === 7 ){
@@ -94,21 +101,24 @@ render(){
             letterWinner = 'd'
           }
 
-      console.log(letterWinner)
-
       let finishText =  letterWinner + '_text.png'
       let finishImage = letterWinner + '_image.png'
 
       return(
-        <div className='finishScreen' onClick={ ()=> this.setState({step: 8})} >
+        <div className='fullBackground' key={finishText}>
+        <div className='slideDownBlocker' />
 
-          <div className='finishText' >
+          <div className='questionLogo' >
+            <img src={'/img/02_Questions/FebrezeQuestionLogo.png'} />
+          </div>
+
+          <div className='questionText' >
             <img src={'/img/03_Results/' + finishText} />
           </div>
 
-          <div className='questionBox' style={{background: 'url(/img/03_Results/' + finishImage + ')', backgroundRepeat: 'no-repeat'}} />
+          <div className='windowBox slideDown' style={{background: 'url(/img/03_Results/' + finishImage + ')', backgroundRepeat: 'no-repeat'}}  />
 
-          <div style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} >
+          <div className='trapp-btn' style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} onClick={ ()=> this.setState({step: 8})}>
             <img  src={'/img/03_Results/NEXT_Button.png'} />
           </div>
         </div>
@@ -135,31 +145,40 @@ render(){
       let finishOptions = letterWinner + '_options.png'
 
       return(
-        <div className='finishScreen' onClick={ ()=> this.setState({step: 9})} >
+        <div className='fullBackground' key={finishOptions}>
+        <div className='slideDownBlocker' />
 
-          <div className='finishText' >
+          <div className='questionLogo' >
+            <img src={'/img/02_Questions/FebrezeQuestionLogo.png'} />
+          </div>
+
+          <div className='questionText' >
             <img src={'/img/03_Results/' + finishText} />
           </div>
 
-          <div className='questionBox' style={{background: 'url(/img/03_Results/' + finishOptions + ')', backgroundRepeat: 'no-repeat'}} />
+          <div className='windowBox slideDown' style={{background: 'url(/img/03_Results/' + finishOptions + ')', backgroundRepeat: 'no-repeat'}}  />
 
-          <div style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} >
+          <div className='trapp-btn' style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} onClick={ ()=> this.setState({step: 9})}>
             <img  src={'/img/03_Results/NEXT_Button.png'} />
           </div>
-
         </div>
       );
     } else if (this.state.step === 9 ){
 
 
       return(
-        <div className='finishScreen' onClick={ ()=> this.setState({step: 0, a: 0, b: 0, c:0, d:0})} >
+        <div className='fullBackground' onClick={ ()=> this.setState({step: 0, a: 0, b: 0, c:0, d:0})}  >
+        <div className='slideDownBlocker' />
 
-          <div className='finishText' >
+          <div className='questionLogo' >
+            <img src={'/img/02_Questions/FebrezeQuestionLogo.png'} />
+          </div>
+
+          <div className='questionText' >
             <img src='/img/04_FinalFrame/04-Ending-Frame_Text.png' />
           </div>
 
-          <div className='questionBox' style={{background: 'url(/img/04_FinalFrame/04-Ending-Frame_Image.png)', backgroundRepeat: 'no-repeat'}} />
+          <div className='windowBox slideDown' style={{background: 'url(/img/04_FinalFrame/04-Ending-Frame_Image.png)', backgroundRepeat: 'no-repeat'}} />
 
           <div style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} >
             <img  src={'/img/03_Results/START-OVER_Button.png'} />

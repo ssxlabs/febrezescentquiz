@@ -3,7 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 40px
+  cursor: none;
+  touch-action: none;
+}
+.App-debug{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
 }
 
 .flex-container {
@@ -14,26 +21,15 @@
 
 }
 
-.header,
-.footer  { flex: 1 ; }
-.sidebar { flex: 1; }
-.main    { flex: 2; }
-
-.flex-item {
-
-  background: tomato;
-  border: 3px solid rgba(0,0,0,.2);
-
-  color: white;
-  font-weight: bold;
-  font-size: 2em;
-  text-align: center;
+.trapp-btn:active{
+  opacity: 0.65
 }
+
 
 .startScreen{
   height: 1920px;
   width: 1080px;
-  background: url('/img/01_Start/startbackground.jpg');
+  background: url('/img/FullBackground.png');
 }
 
 .roomStartScreen{
@@ -52,36 +48,39 @@
   position: absolute;
   left: 0px;
   right: 0px;
-  bottom: 0px;
   top: 675px;
+  height:1245px;
   flex: 1;
   justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  overflow: hidden;
+
 }
 
-.finishScreen{
+.roomBoxAnimate{
+  animation-duration: 1s;
+  animation-name: roomQuestionBoxSlideup;
+}
+
+@keyframes roomQuestionBoxSlideup {
+  from {
+    top: 100%;
+  }
+
+  to {
+    top: 675px;
+  }
+}
+
+
+.fullBackground{
   position: relative;
   height: 1920px;
   width: 1080px;
-  background: url('/img/03_Results/Results_BACKGROUND.png');
-}
-
-.finishText{
-  position: absolute;
-  width: 100%;
-  top: 200px;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center
-}
-
-.questionScreen{
-  position: relative;
-  height: 1920px;
-  width: 1080px;
-  background: url('/img/02_Questions/Questions_BACKGROUND.png');
+  background: url('/img/FullBackground.png');
+  z-index: 999999;
 }
 
 .questionText{
@@ -90,10 +89,31 @@
   top: 200px;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center
+  justify-content: center;
+  z-index: 102;
 }
 
-.questionBox{
+.questionLogo{
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  z-index: 101;
+}
+
+.startLogo{
+  position: absolute;
+  width: 100%;
+  top: 80px;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  z-index: 101;
+}
+
+.windowBox{
   position: absolute;
   width: 736px;
   height:1165px;
@@ -104,6 +124,32 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  z-index: 9;
+}
+
+.slideDownBlocker{
+  position: absolute;
+  z-index: 100;
+  height:472px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background: url('/img/slideDownBlocker.jpg');
+}
+
+.slideDown{
+  animation-duration: 1s;
+  animation-name: windowBoxSlideDown;
+}
+
+@keyframes windowBoxSlideDown {
+  from {
+    bottom: calc(1165px + 281px);
+  }
+
+  to {
+    bottom: 281px;
+  }
 }
 
 
@@ -128,4 +174,22 @@
     50% {opacity: 0.1;}
     60% {opacity: 1.0;}
     100% {-webkit-transform: scale(2.2, 2.2); opacity: 0.0;}
+}
+
+.windowBoxTransition-enter {
+  opacity: 0.01;
+}
+
+.windowBoxTransition-enter.windowBoxTransition-enter-active {
+  opacity: 1;
+  transition: opacity 5ms ease-in;
+}
+
+.windowBoxTransition-leave {
+  opacity: 1;
+}
+
+.windowBoxTransition-leave.windowBoxTransition-leave-active {
+  opacity: 0.01;
+  transition: opacity 5ms ease-in;
 }

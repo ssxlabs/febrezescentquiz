@@ -83,7 +83,7 @@ render(){
 
               <div className='roomQuestionScreen' style={{background: 'url(' + menuImg + ')'}} >
 
-                  <div className='roomQuestionBox' onClick={ ()=> this.setState({step:1})}>
+                  <div className='roomQuestionBox roomBoxAnimate' onClick={ ()=> this.setState({step:1})}>
                       <img src={popUpImg} />
                   </div>
 

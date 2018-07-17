@@ -10,13 +10,13 @@ class App extends Component {
       <Router>
         <div>
 
-          <Route exact path="/quiz" render={(props) => (
+          <Route exact path="/" render={(props) => (
             <div className='App'  >
               <Quiz  />
             </div>
           )} />
 
-          <Route exact path="/" render={(props) => (
+          <Route exact path="/quiz" render={(props) => (
             <div className='App'  >
               <Quiz  />
             </div>
@@ -24,6 +24,18 @@ class App extends Component {
 
           <Route exact path="/room/:room" render={(props) => (
             <div className='App'  >
+              <GuestSpace room={props.match.params.room} {...props}  />
+            </div>
+          )} />
+
+          <Route exact path="/test/quiz" render={(props) => (
+            <div className='App-debug'  >
+              <Quiz  />
+            </div>
+          )} />
+
+          <Route exact path="/test/room/:room" render={(props) => (
+            <div className='App-debug'  >
               <GuestSpace room={props.match.params.room} {...props}  />
             </div>
           )} />
