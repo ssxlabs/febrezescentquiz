@@ -10,7 +10,6 @@ export default class Quiz extends Component {
 
 componentDidMount(){
    window.addEventListener('click', this.setGlobalResetTimer);
-
 }
 
 answerSelected = ( answer) => {
@@ -116,7 +115,7 @@ render(){
             <img src={'/img/03_Results/' + finishText} />
           </div>
 
-          <div className='windowBox slideDown' style={{background: 'url(/img/03_Results/' + finishImage + ')', backgroundRepeat: 'no-repeat'}}  />
+          <div className='windowBox slideDown trapp-btn' style={{background: 'url(/img/03_Results/' + finishImage + ')', backgroundRepeat: 'no-repeat'}} onClick={ ()=> this.setState({step: 8})} />
 
           <div className='trapp-btn' style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} onClick={ ()=> this.setState({step: 8})}>
             <img  src={'/img/03_Results/NEXT_Button.png'} />
@@ -156,7 +155,7 @@ render(){
             <img src={'/img/03_Results/' + finishText} />
           </div>
 
-          <div className='windowBox slideDown' style={{background: 'url(/img/03_Results/' + finishOptions + ')', backgroundRepeat: 'no-repeat'}}  />
+          <div className='windowBox slideDown trapp-btn' style={{background: 'url(/img/03_Results/' + finishOptions + ')', backgroundRepeat: 'no-repeat'}}  onClick={ ()=> this.setState({step: 9})} />
 
           <div className='trapp-btn' style={{position: 'absolute', bottom: '20px', justifyContent: 'center', display: 'flex', flex: 1, width: '100%'}} onClick={ ()=> this.setState({step: 9})}>
             <img  src={'/img/03_Results/NEXT_Button.png'} />

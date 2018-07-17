@@ -1,16 +1,21 @@
 
+body {
+    overflow:hidden;
+}
 .App{
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: none;
   touch-action: none;
+  overflow: hidden;
 }
 .App-debug{
   display: flex;
   align-items: center;
   justify-content: center;
   touch-action: none;
+  overflow: hidden;
 }
 
 .flex-container {
