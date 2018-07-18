@@ -13,8 +13,40 @@ componentDidMount(){
 }
 
 answerSelected = ( answer) => {
-  console.log('answer: ' + answer)
-  this.setState({ step: this.state.step + 1, [answer]: this.state[answer] + 1})
+
+  let letterWinner
+  let {a, b, c, d} = this.state
+
+  if (answer === 'a'){
+    a++
+  } else if (answer === 'b'){
+    b++
+  } else if (answer === 'c'){
+    c++
+  } else {
+    d++
+  }
+
+  if (this.state.step === 6){
+
+        if (a > b && a > c && a > d) {
+          letterWinner = 'a'
+        } else if (b > a && b > c && b > d) {
+          letterWinner = 'b'
+        } else if (c > b && c > a && c > d) {
+          letterWinner = 'c'
+        } else if (d > b && d > c && d > a) {
+          letterWinner = 'd'
+        } else {
+          letterWinner = this.pickRandomLetter()
+        }
+
+    this.setState({ step: 7, letterWinner: letterWinner, [answer]: this.state[answer] + 1})
+  } else {
+    //[answer] = this.state[answer] - 1
+    this.setState({ step: this.state.step + 1, [answer]: this.state[answer] + 1})
+  }
+
 }
 
 formSelected = (form) => {
@@ -31,11 +63,41 @@ setGlobalResetTimer = () =>{
 
   let tempglobalResetTimer = window.setTimeout( ()=>  {
     console.log('timer expired: reseting page!')
-    this.setState({step: 0,  a: 0, b:0, c:0, d:0})
+    this.setState({step: 0,  a: 0, b:0, c:0, d:0, letterWinner: null})
   }, 30000 )
 
   this.setState({ globalResetTimer: tempglobalResetTimer})
 
+}
+
+
+pickRandomLetter = () =>{
+
+  if (this.state.randomLetter){
+    return this.state.randomLetter
+  }
+
+  let randomNumber = Math.floor(Math.random() * 4) + 1
+  let randomLetter
+  console.log('randomNumber: ' + randomNumber)
+    switch(randomNumber) {
+    case 1:
+        randomLetter = 'a'
+        break;
+    case 2:
+        randomLetter = 'b'
+        break;
+    case 3:
+        randomLetter = 'c'
+        break;
+    case 4:
+        randomLetter = 'd'
+        break;
+    default:
+        randomLetter = 'd'
+      }
+
+  return randomLetter
 }
 
 
@@ -83,25 +145,8 @@ render(){
 
     } else if (this.state.step === 7 ){
 
-
-      let letterWinner
-      let {a, b, c, d} = this.state
-
-
-          if (a > b && a > c && a > d) {
-            letterWinner = 'a'
-          } else if (b > a && b > c && b > d) {
-            letterWinner = 'b'
-          } else if (c > b && c > a && c > d) {
-            letterWinner = 'c'
-          } else if (d > b && d > c && d > a) {
-            letterWinner = 'd'
-          } else {
-            letterWinner = 'd'
-          }
-
-      let finishText =  letterWinner + '_text.png'
-      let finishImage = letterWinner + '_image.png'
+      let finishText =  this.state.letterWinner + '_text.png'
+      let finishImage = this.state.letterWinner + '_image.png'
 
       return(
         <div className='fullBackground' key={finishText}>
@@ -124,24 +169,8 @@ render(){
       );
     }  else if (this.state.step === 8 ){
 
-
-      let letterWinner
-      let {a, b, c, d} = this.state
-
-          if (a > b && a > c && a > d) {
-            letterWinner = 'a'
-          } else if (b > a && b > c && b > d) {
-            letterWinner = 'b'
-          } else if (c > b && c > a && c > d) {
-            letterWinner = 'c'
-          } else if (d > b && d > c && d > a) {
-            letterWinner = 'd'
-          } else {
-            letterWinner = 'd'
-          }
-
-      let finishText =  letterWinner + '_text.png'
-      let finishOptions = letterWinner + '_options.png'
+      let finishText =  this.state.letterWinner + '_text.png'
+      let finishOptions = this.state.letterWinner + '_options.png'
 
       return(
         <div className='fullBackground' key={finishOptions}>
@@ -166,7 +195,7 @@ render(){
 
 
       return(
-        <div className='fullBackground' onClick={ ()=> this.setState({step: 0, a: 0, b: 0, c:0, d:0})}  >
+        <div className='fullBackground' onClick={ ()=> this.setState({step: 0, a: 0, b: 0, c:0, d:0, letterWinner: null})}  >
         <div className='slideDownBlocker' />
 
           <div className='questionLogo' >
